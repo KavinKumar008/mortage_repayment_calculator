@@ -4,15 +4,17 @@ import illustration from "./assets/illustration-empty.jpg";
 
 const HomePage = () => {
   return (
-    <main className="w-[1000px] h-[500px] flex shadow-2xl rounded-3xl">
-      <section className="w-[50%] h-auto border-2 border-yellow-400 p-8">
+    <main className="w-[1000px] h-[500px] flex shadow-2xl rounded-3xl ">
+      <section className="w-[50%] h-auto p-8 bg-white rounded-3xl">
         <div className="flex justify-between items-center">
           <p className="text-[1.6rem] font-bold">Mortgage Calculator</p>
-          <p className="border-b border-gray-400 cursor-pointer">Clear All</p>
+          <p className="border-b border-gray-400 cursor-pointer text-gray-500">
+            Clear All
+          </p>
         </div>
         <div className="relative mt-4">
           <p className="text-gray-500">Mortgage Amount</p>
-          <div className="absolute h-[48px] w-[50px] flex justify-center items-center bg-blue-100 rounded-lg">
+          <div className="absolute p-[15px] flex justify-center items-center bg-blue-100  left-[1px]">
             <FaPoundSign className="text-gray-500 font-light" />
           </div>
           <input
@@ -20,18 +22,18 @@ const HomePage = () => {
             className="w-full border border-gray-500 p-3 rounded-md outline-none"
           />
         </div>
-        <div className="flex gap-8 mt-4">
+        <div className="flex gap-16 mt-4">
           <div className="relative">
             <p className="text-gray-500">Mortgage Term</p>
             <input
               type="text"
               className="border border-gray-500 p-3 rounded-md mt-2 outline-none w-full"
             />
-            <div className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500">
+            <div className="absolute right-0 top-[70%] translate-y-[-50%] text-gray-500 flex justify-center items-center bg-blue-100 p-3">
               <span>years</span>
             </div>
           </div>
-          <div>
+          <div className="relative">
             <p className="text-gray-500">Interest Rate</p>
             <input
               type="text"
@@ -39,7 +41,9 @@ const HomePage = () => {
               id=""
               className="border border-gray-500 p-3 rounded-md mt-2 outline-none"
             />
-            <span>%</span>
+            <div className="absolute right-0 top-[70%] translate-y-[-50%] text-gray-500 flex justify-center items-center bg-blue-100 p-3 px-4">
+              <span>%</span>
+            </div>
           </div>
         </div>
         <div className="mt-4">
@@ -66,26 +70,32 @@ const HomePage = () => {
             type="button"
             className="flex gap-3 items-center mt-5 p-3 px-10 bg-yellow-300 rounded-3xl"
           >
-            <img src={calculator} alt="calc" className="h-4 bg-transparent" />
+            <img
+              src={calculator}
+              alt="calc"
+              className="h-5 bg-transparent mix-blend-multiply"
+            />
             <span className="text-blue-950 font-bold">
               Calculate Repayments
             </span>
           </button>
         </div>
       </section>
-      <section className="w-[50%] h-auto border-2 border-green-600">
+      <section className="w-[50%] h-auto bg-blue-950 flex flex-col justify-center items-center gap-6 rounded-tr-3xl rounded-br-3xl rounded-bl-[5rem]">
         <div>
           <img
             src={illustration}
             alt="illustration"
-            className="h-[200px] bg-transparent"
+            className="h-[200px] !bg-transparent !border-0"
           />
         </div>
-        <div>
-          <h3>Results shown here</h3>
-          <p>
-            Complete the form and click "calculate repayments" to see what your
-            monthly repayments would be.
+        <div className="flex flex-col gap-5 justify-center">
+          <h3 className="text-center text-white text-[1.5rem] font-medium">
+            Results shown here
+          </h3>
+          <p className="text-gray-400 text-center">
+            Complete the form and click "calculate repayments" to <br />
+            see what your monthly repayments would be.
           </p>
         </div>
       </section>
