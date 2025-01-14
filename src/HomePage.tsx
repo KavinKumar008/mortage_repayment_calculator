@@ -1,8 +1,26 @@
 import { FaPoundSign } from "react-icons/fa";
 import calculator from "./assets/icon-calculator.jpg";
 import illustration from "./assets/illustration-empty.jpg";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
+  const [amount, setAmount] = useState("");
+  const [term, setTerm] = useState("");
+  const [rate, setRate] = useState("");
+  const [active, setActive] = useState(false);
+  console.log(amount, term, rate);
+
+  const handleSubmit = () => {
+    console.log("hiiii");
+  };
+
+  useEffect(() => {
+    if (term) {
+      setActive(true);
+    } else if (rate) {
+      setActive(true);
+    }
+  }, [term, rate]);
   return (
     <main className="w-[1000px] h-[500px] flex shadow-2xl rounded-3xl max-sm:flex-col max-sm:w-full max-sm:h-auto">
       <section className="w-[50%] h-auto p-8 bg-white rounded-3xl max-sm:w-full">
@@ -14,12 +32,25 @@ const HomePage = () => {
         </div>
         <div className="relative mt-4">
           <p className="text-gray-500">Mortgage Amount</p>
-          <div className="absolute top-[34%] p-4 flex justify-center items-center bg-blue-100  left-[1px] rounded-tl-md rounded-bl-md">
-            <FaPoundSign className="text-gray-500 font-light" />
+          <div
+            className={`absolute top-[34%] p-4 flex justify-center items-center  ${
+              amount !== null && amount ? "bg-yellow-400" : "bg-blue-100"
+            } left-[1px] rounded-tl-md rounded-bl-md`}
+          >
+            <FaPoundSign
+              className={`${
+                amount !== null && amount ? "text-black" : "text-gray-500"
+              } font-light`}
+            />
           </div>
           <input
             type="text"
-            className="w-full border border-gray-500 p-3 rounded-md outline-none"
+            className={`w-full p-3 rounded-md outline-none pl-14 required ${
+              amount !== null && amount
+                ? "border border-yellow-400"
+                : "border border-gray-500"
+            }`}
+            onChange={(e) => setAmount(e.target.value)}
           />
         </div>
         <div className="flex gap-16 mt-4 max-sm:flex-col max-sm:gap-6">
@@ -27,7 +58,14 @@ const HomePage = () => {
             <p className="text-gray-500">Mortgage Term</p>
             <input
               type="text"
-              className="border border-gray-500 p-3 rounded-md mt-2 outline-none w-full"
+              className={`border ${
+                term.length === 0
+                  ? "border border-yellow-400"
+                  : "border-gray-500"
+              } p-3 rounded-md mt-2 outline-none w-full`}
+              onChange={(e) => {
+                setTerm(e.target.value);
+              }}
             />
             <div className="absolute right-[1px] top-[70%] translate-y-[-50%] text-gray-500 flex justify-center items-center bg-blue-100 p-3 rounded-tr-md rounded-br-md">
               <span>years</span>
@@ -37,9 +75,16 @@ const HomePage = () => {
             <p className="text-gray-500">Interest Rate</p>
             <input
               type="text"
-              name=""
-              id=""
-              className="border border-gray-500 p-3 rounded-md mt-2 outline-none w-full"
+              name="rate"
+              id="rate"
+              className={`border ${
+                rate.length <= 0
+                  ? "border border-yellow-400"
+                  : "border-gray-500"
+              } p-3 rounded-md mt-2 outline-none w-full`}
+              onChange={(e) => {
+                setRate(e.target.value);
+              }}
             />
             <div className="absolute right-[1px] top-[70%] translate-y-[-50%] text-gray-500 flex justify-center items-center bg-blue-100 p-3 px-4 rounded-tr-md rounded-br-md">
               <span>%</span>
@@ -69,6 +114,7 @@ const HomePage = () => {
           <button
             type="button"
             className="flex gap-3 items-center mt-5 p-3 px-10 bg-yellow-300 rounded-3xl max-sm:w-full"
+            onClick={handleSubmit}
           >
             <img
               src={calculator}
